@@ -90,7 +90,7 @@ func (b Binary) DownloadAndSave() error {
 	}
 	defer resp.Body.Close()
 
-	f, err := os.Create(b.ExecutablePath())
+	f, err := os.OpenFile(b.ExecutablePath(), os.O_CREATE|os.O_WRONLY, os.FileMode(0755))
 	if err != nil {
 		return err
 	}
